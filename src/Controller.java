@@ -569,121 +569,6 @@ public class Controller {
         String holdForRoom="";
         
         boolean schedF = false;
-//        if(!holdForTime.contains("/")){
-//
-//            int schedFound=0;
-//            while(schedFound<2){
-//                int a = 0;
-//                useThisForTime3hour.clear();
-//                if(AMorPM==1){
-//                    useThisForTime3hour.addAll(time3hourDistanceAM);
-//                    useThisForTime3hour.addAll(time3hourDistancePM);
-//                }else{
-//                    useThisForTime3hour.addAll(time3hourDistancePM);
-//                    useThisForTime3hour.addAll(time3hourDistanceAM);
-//                }
-//                forDOW.clear();
-//                forTime.clear();
-//                forDOW.addAll(dowFor3hoursFD);
-//                forTime.addAll(useThisForTime3hour);
-//                for(String rs: roomShuf){
-//                    if(prog.getValue().equals("BSIT")){
-//                        for(roomModel rm : rooms){
-//                            if(rs.equals(rm.getroomCODE()) && rm.getroomType().equals(lecOrLab)){
-//                                roomIsRight = true;
-//                                break;
-//                            }
-//                        }
-//                    }else if(prog.getValue().equals("BSA")){
-//                        for(roomModel rm : rooms){
-//                            if(rs.equals(rm.getroomCODE()) && (rm.getroomType().equals(lecOrLab) || rm.getroomType().equals("Lecture"))){
-//                                roomIsRight = true;
-//                                break;
-//                            }
-//                        }
-//                    }else if(prog.getValue().equals("BSTLEd")){
-//                        for(roomModel rm : rooms){
-//                            if(rs.equals(rm.getroomCODE()) && rm.getroomType().equals(lecOrLab) && rm.getroomBuilding().equals("2")){
-//                                roomIsRight = true;
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    else if(prog.getValue().equals("BSBA")){
-//                        for(roomModel rm : rooms){
-//
-//                            if(rm.getroomBuilding().equals("1") && rm.getroomType().equals("Lecture") && rs.equals(rm.getroomCODE())){
-//                                roomIsRight = true;
-//                                break;
-//                            }
-//
-//                        }
-//                    }
-//                    if(id.equals("144")){
-//                        if(rs.equals("CL1") || rs.equals("CL2")){
-//                            roomIsRight = true;
-//                        }else{
-//                            roomIsRight = false;
-//                        }
-//                    }
-//                    if(roomIsRight){
-//                        for(String dow : forDOW){
-//                            for(String time: forTime){
-//                                String fac="",secs="";
-//                                for(schedModel sm: allSchedule){
-//                                    if(!sm.getstatus().equals("0")){
-//                                        fac=sm.getfacultyID();
-//                                        secs=sm.getsectionID();
-//                                        schedF = checkIfRoomTimeAndDaysIsAvailable(sm.getdays(), sm.gettime(), sm.getroom(), rs, time, dow,id,sm.getfacultyID(), sm.getsectionID(), secID);
-//                                        if(!schedF){
-//                                            break;
-//                                        }
-//                                        firstSched=false;
-//                                    }
-//                                }
-//                                if(firstSched){
-//                                    firstSched=false;
-//                                    holdForTime+=time;
-//                                    holdForDays+=dow;
-//                                    holdForRoom+=rs;
-//                                }
-//                                if(!holdForDays.equals("") && schedF){
-//                                    schedF = checkIfRoomTimeAndDaysIsAvailable(holdForDays, holdForTime, holdForRoom, rs, time, dow, id,fac, secs, secID);
-//
-//                                }
-//                                if(schedF){
-//                                    if(holdForTime.equals("")){
-//                                        holdForTime+=time;
-//                                        holdForDays+=dow;
-//                                        holdForRoom+=rs;
-//                                    }else{
-//                                        holdForTime+="/"+time;
-//                                        holdForDays+="/"+dow;
-//                                        holdForRoom+="/"+rs;
-//                                    }
-//                                }
-//                                if(schedF){break;}
-//                            }
-//                            if(schedF){break;}
-//                        }
-//                        if(schedF){break;}
-//                    }
-//                    if(schedF){break;}
-//                }
-//                System.out.println(holdForTime+"--"+holdForDays+"--"+holdForRoom);
-//                System.out.println("OHHHHH-----"+ifSchedIsAvailable);
-//                a++;
-//                schedFound++;
-//                schedF=false;
-//            }
-//        }
-//        if(holdForTime.contains("/")){
-//            ifSchedIsAvailable=true;
-//            if(ifSchedIsAvailable){
-//                return holdForTime+";"+holdForDays+";"+holdForRoom;
-//            }
-//        }
-//        
         
         ObservableList<String> time2hourDistanceAM = FXCollections.observableArrayList("8-10am","9-11am","10-12nn");
         ObservableList<String> time2hourDistancePM = FXCollections.observableArrayList("1-3pm","2-4pm","3-5pm","4-6pm","5-7pm");
@@ -828,17 +713,6 @@ public class Controller {
         ObservableList<String> dowFor3hours = FXCollections.observableArrayList("M","T","W","TH","F");
         ObservableList<String> dowFor1hours = FXCollections.observableArrayList("MWF");
         
-        if(secID.equals("80")){
-            time1hourDistanceAM.clear();
-            time1hourDistancePM.clear();
-            ObservableList<String> time1hourDistancePMDef = FXCollections.observableArrayList("9-10am","10-11am","1-2pm","2-3pm","3-4pm","11-12nn","8-9am","4-5pm","5-6pm","6-7pm");
-            time1hourDistanceAM.addAll(time1hourDistancePMDef);
-            
-            time1and30minutesDisAM.clear();
-            time1and30minutesDisPM.clear();
-            ObservableList<String> time1and30minutesDisAMDef = FXCollections.observableArrayList("9-10:30am", "9:30-11am","10-11:30am","10:30-12nn","1-2:30pm","2:30-4pm","2-3:30pm", "3-4:30pm","3:30-5pm","8-9:30am","4-5:30pm","4:30-6pm", "5-6:30pm", "5:30-7pm");
-            time1and30minutesDisAM.addAll(time1and30minutesDisAMDef);
-        }
         
         Random r = new  Random();
         int AMorPM = r.nextInt(3)+1;
@@ -1123,18 +997,6 @@ public class Controller {
         ObservableList<String> dowFor1and30hours = FXCollections.observableArrayList("MW","TTH");
         ObservableList<String> dowFor3hours = FXCollections.observableArrayList("M","T","W","TH","F");
         ObservableList<String> dowFor1hours = FXCollections.observableArrayList("MWF");
-        
-        if(secID.equals("80")){
-            time1hourDistanceAM.clear();
-            time1hourDistancePM.clear();
-            ObservableList<String> time1hourDistancePMDef = FXCollections.observableArrayList("9-10am","10-11am","1-2pm","2-3pm","3-4pm","11-12nn","8-9am","4-5pm","5-6pm","6-7pm");
-            time1hourDistanceAM.addAll(time1hourDistancePMDef);
-            
-            time1and30minutesDisAM.clear();
-            time1and30minutesDisPM.clear();
-            ObservableList<String> time1and30minutesDisAMDef = FXCollections.observableArrayList("9-10:30am", "9:30-11am","10-11:30am","10:30-12nn","1-2:30pm","2:30-4pm","2-3:30pm", "3-4:30pm","3:30-5pm","8-9:30am","4-5:30pm","4:30-6pm", "5-6:30pm", "5:30-7pm");
-            time1and30minutesDisAM.addAll(time1and30minutesDisAMDef);
-        }
         
         
         Random r = new  Random();
@@ -1425,17 +1287,6 @@ public class Controller {
         ObservableList<String> dowFor1hours = FXCollections.observableArrayList("MW","TTH");
         ObservableList<String> dowFor2hours = FXCollections.observableArrayList("M","T","W","TH","F");
         
-        if(secID.equals("80")){
-            time1hourDistanceAM.clear();
-            time1hourDistancePM.clear();
-            ObservableList<String> time1hourDistancePMDef = FXCollections.observableArrayList("9-10am","10-11am","1-2pm","2-3pm","3-4pm","11-12nn","8-9am","4-5pm","5-6pm","6-7pm");
-            time1hourDistanceAM.addAll(time1hourDistancePMDef);
-            
-            time2hourDistanceAM.clear();
-            time2hourDistancePM.clear();
-            ObservableList<String> time2hourDistanceAMDef = FXCollections.observableArrayList("9-11am","10-12nn","1-3pm","2-4pm","3-5pm","4-6pm","5-7pm","8-10am");
-            time2hourDistanceAM.addAll(time2hourDistanceAMDef);
-        }
         
         Random r = new  Random();
         int hourORhours = r.nextInt(3)+1;
